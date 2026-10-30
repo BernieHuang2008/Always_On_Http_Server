@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Always On HTTP Server</title>
+  <link rel="stylesheet" href="/static/app.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <h1>Always On HTTP Server (<code>localhost:8787</code>)</h1>
+        <p id="summary">Loading...</p>
+      </div>
+      <div class="actions">
+        <span class="live-pill" id="liveStatus">Live connecting</span>
+        <button class="icon-button" id="reloadButton" title="刷新配置" aria-label="刷新配置" type="button">↻</button>
+      </div>
+    </header>
+
+    <section class="folder-layer">
+      <div class="folder-list" id="folderList"></div>
+      <button class="icon-button soft blue" id="addFolder" title="新建文件夹" aria-label="新建文件夹" type="button">+</button>
+    </section>
+
+    <section class="board" id="board">
+      <svg id="links" aria-hidden="true"></svg>
+
+      <div class="column">
+        <div class="column-title">
+          <div class="title-group">
+            <span>API</span>
+            <small id="routeCount">0</small>
+          </div>
+          <button class="icon-button soft rose" id="addRoute" title="新建 API" aria-label="新建 API" type="button">+</button>
+        </div>
+        <div id="routeList" class="stack"></div>
+      </div>
+
+      <div class="column">
+        <div class="column-title">
+          <div class="title-group">
+            <span>Logic</span>
+            <small id="logicCount">0</small>
+          </div>
+          <button class="icon-button soft mint" id="addLogic" title="新建 Logic" aria-label="新建 Logic" type="button">+</button>
+        </div>
+        <div id="logicList" class="stack"></div>
+      </div>
+    </section>
+
+    <section class="log-panel">
+      <div class="log-head">
+        <div>
+          <h2>Request Log</h2>
+          <p>实时显示服务收到的请求。</p>
+        </div>
+        <button class="ghost small-button" id="clearLogView" type="button">清空视图</button>
+      </div>
+      <div id="logList" class="log-list"></div>
+    </section>
+  </main>
+
+  <section class="editor-cover" id="editorCover" hidden>
+    <button class="cover-backdrop" id="coverBackdrop" aria-label="关闭编辑窗口" type="button"></button>
+    <div class="editor-panel" role="dialog" aria-modal="true" aria-labelledby="editorTitle">
+      <header class="editor-head">
+        <div>
+          <h2 id="editorTitle">编辑</h2>
+          <p id="editorSubtitle">调整配置后会立即写入当前服务。</p>
+        </div>
+        <button class="icon-button" id="closeEditor" title="关闭" aria-label="关闭" type="button">×</button>
+      </header>
+
+      <form id="folderForm" class="editor-form" hidden>
+        <input type="hidden" id="folderId">
+        <label>
+          名称
+          <input id="folderName" autocomplete="off" placeholder="Internal APIs">
+        </label>
+        <label>
+          图标
+          <input id="folderIcon" autocomplete="off" maxlength="2" placeholder="▣">
+        </label>
+        <label>
+          Path 前缀
+          <input id="folderPrefix" autocomplete="off" placeholder="/api">
+        </label>
+        <label>
+          主题色
+          <input id="folderTheme" type="color" value="#ffffff">
+        </label>
+        <div class="button-row">
+          <button type="submit">保存文件夹</button>
+          <button type="button" class="ghost" id="deleteFolder">删除文件夹</button>
+        </div>
+      </form>
+
+      <form id="routeForm" class="editor-form" hidden>
+        <input type="hidden" id="routeId">
+        <label>
+          文件夹
+          <select id="routeFolder"></select>
+        </label>
+        <label>
+          名称
+          <input id="routeName" autocomplete="off" placeholder="Health">
+        </label>
+        <label>
+          路径
+          <input id="routePath" autocomplete="off" placeholder="/hello/{name}">
+        </label>
+        <div class="method-grid" id="methodGrid"></div>
+        <label>
+          连接逻辑
+          <select id="routeLogic"></select>
+        </label>
+        <label class="toggle-row">
+          <input id="routeTemporary" type="checkbox">
+          <span>
+            临时生效
+            <small>打开后重启失效；关闭则长期保留。</small>
+          </span>
+        </label>
+        <label class="toggle-row">
+          <input id="routeEnabled" type="checkbox" checked>
+          <span>启用</span>
+        </label>
+        <div class="button-row">
+          <button type="submit">保存接口</button>
+          <button type="button" class="ghost" id="resetRoute">重置</button>
+        </div>
+      </form>
+
+      <form id="logicForm" class="editor-form" hidden>
+        <input type="hidden" id="logicId">
+        <label>
+          名称
+          <input id="logicName" autocomplete="off" placeholder="Welcome JSON">
+        </label>
+        <label>
+          类型
+          <select id="logicType">
+            <option value="static_page">静态内容</option>
+            <option value="static_file">静态文件</option>
+            <option value="python_script">Python 脚本</option>
+          </select>
+        </label>
+        <label class="toggle-switch">
+          <input id="logicTemporary" type="checkbox">
+          <span class="toggle-ui"></span>
+          <span>
+            临时生效
+            <small>打开后重启失效；关闭则长期保留。</small>
+          </span>
+        </label>
+        <div id="logicFields"></div>
+        <div class="button-row">
+          <button type="submit">保存逻辑</button>
+          <button type="button" class="ghost" id="resetLogic">重置</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

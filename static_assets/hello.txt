@@ -1,0 +1,1 @@
+Hello from static_assets/hello.txt

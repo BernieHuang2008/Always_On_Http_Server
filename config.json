@@ -1,0 +1,122 @@
+{
+  "version": 1,
+  "updated_at": "2026-08-24T04:15:10.639210+00:00",
+  "logic": [
+    {
+      "id": "logic-welcome",
+      "name": "Welcome JSON",
+      "type": "static_page",
+      "scope": "persistent",
+      "config": {
+        "status": 200,
+        "content_type": "application/json; charset=utf-8",
+        "body": "{\n  \"ok\": true,\n  \"message\": \"Always On HTTP Server is running.\"\n}"
+      },
+      "order": 0
+    },
+    {
+      "id": "logic-echo",
+      "name": "Echo Script",
+      "type": "python_script",
+      "scope": "persistent",
+      "config": {
+        "code": "def handle(context):\n    return {\n        'json': {\n            'method': context['method'],\n            'path': context['path'],\n            'query': context['query'],\n            'json': context['json'],\n            'path_params': context['path_params'],\n        },\n        'status': 200,\n    }\n"
+      },
+      "order": 10
+    },
+    {
+      "id": "logic-feb869e5f5",
+      "name": "fake LLM response for PS2",
+      "type": "static_page",
+      "scope": "persistent",
+      "config": {
+        "status": 200,
+        "content_type": "application/json; charset=utf-8",
+        "body": "{\n    \"id\": \"gen-1784250981-xRtOkU2WuDj5YWxJb5nv\",\n    \"object\": \"chat.completion\",\n    \"created\": 1784250981,\n    \"model\": \"nvidia/nemotron-3-super-120b-a12b:free\",\n    \"provider\": \"Nvidia\",\n    \"system_fingerprint\": null,\n    \"service_tier\": null,\n    \"choices\": [\n        {\n            \"index\": 0,\n            \"logprobs\": null,\n            \"finish_reason\": \"stop\",\n            \"native_finish_reason\": \"stop\",\n            \"message\": {\n                \"role\": \"assistant\",\n                \"content\": \"{\\n    \\\"new_world\\\": {\\n        \\\"version\\\": \\\"file-v2\\\",\\n        \\\"world\\\": {\\n            \\\"phyobjs\\\": {\\n                \\\"OBJ_ZEM7IC6E1\\\": {\\n                    \\\"id\\\": \\\"OBJ_ZEM7IC6E1\\\",\\n                    \\\"type\\\": \\\"WorldAnchorPO\\\",\\n                    \\\"nickname\\\": \\\"世界设置\\\",\\n                    \\\"mass\\\": \\\"🥒Infinity\\\",\\n                    \\\"pos\\\": [0, 0],\\n                    \\\"velocity\\\": [0, 0],\\n                    \\\"vars\\\": [],\\n                    \\\"ffs\\\": [],\\n                    \\\"style\\\": {\\n                        \\\"color\\\": \\\"#ff0000\\\",\\n                        \\\"size\\\": 1,\\n                        \\\"shape\\\": \\\"\\\"\\n                    }\\n                },\\n                \\\"OBJ_SUN_ZEM7IC6E2\\\": {\\n                    \\\"id\\\": \\\"OBJ_SUN_ZEM7IC6E2\\\",\\n                    \\\"type\\\": \\\"ParticlePO\\\",\\n                    \\\"nickname\\\": \\\"太阳\\\",\\n                    \\\"mass\\\": 1000,\\n                    \\\"pos\\\": [0, 0],\\n                    \\\"velocity\\\": [0, 0],\\n                    \\\"vars\\\": [\\n                        \\\"VAR_OBJ_SUN_ZEM7IC6E2_mass\\\",\\n                        \\\"VAR_OBJ_SUN_ZEM7IC6E2_pos\\\",\\n                        \\\"VAR_OBJ_SUN_ZEM7IC6E2_velocity\\\"\\n                    ],\\n                    \\\"ffs\\\": [\\n                        \\\"FFI_GRAV_ZEM7IC6E5\\\"\\n                    ],\\n                    \\\"style\\\": {\\n                        \\\"color\\\": \\\"#ff6b35\\\",\\n                        \\\"size\\\": 8,\\n                        \\\"shape\\\": \\\"\\\"\\n                    }\\n                },\\n                \\\"OBJ_EARTH_ZEM7IC6E3\\\": {\\n                    \\\"id\\\": \\\"OBJ_EARTH_ZEM7IC6E3\\\",\\n                    \\\"type\\\": \\\"ParticlePO\\\",\\n                    \\\"nickname\\\": \\\"地球\\\",\\n                    \\\"mass\\\": 1,\\n                    \\\"pos\\\": [10, 0],\\n                    \\\"velocity\\\": [0, 31.62],\\n                    \\\"vars\\\": [\\n                        \\\"VAR_OBJ_EARTH_ZEM7IC6E3_mass\\\",\\n                        \\\"VAR_OBJ_EARTH_ZEM7IC6E3_pos\\\",\\n                        \\\"VAR_OBJ_EARTH_ZEM7IC6E3_velocity\\\"\\n                    ],\\n                    \\\"ffs\\\": [],\\n                    \\\"style\\\": {\\n                        \\\"color\\\": \\\"#009dff\\\",\\n                        \\\"size\\\": 2,\\n                        \\\"shape\\\": \\\"\\\"\\n                    }\\n                }\\n            },\\n            \\\"vars\\\": {\\n                \\\"VAR_OBJ_ZEM7IC6E1_mass\\\": {\\n                    \\\"id\\\": \\\"VAR_OBJ_ZEM7IC6E1_mass\\\",\\n                    \\\"nickname\\\": \\\"m\\\",\\n                    \\\"type\\\": \\\"immediate\\\",\\n                    \\\"expression_or_value\\\": \\\"🥒Infinity\\\"\\n                },\\n                \\\"VAR_OBJ_ZEM7IC6E1_pos\\\": {\\n                    \\\"id\\\": \\\"VAR_OBJ_ZEM7IC6E1_pos\\\",\\n                    \\\"nickname\\\": \\\"pos\\\",\\n                    \\\"type\\\": \\\"immediate\\\",\\n                    \\\"expression_or_value\\\": [0, 0]\\n                },\\n                \\\"VAR_OBJ_ZEM7IC6E1_velocity\\\": {\\n                    \\\"id\\\": \\\"VAR_OBJ_ZEM7IC6E1_velocity\\\",\\n                    \\\"nickname\\\": \\\"velocity\\\",\\n                    \\\"type\\\": \\\"immediate\\\",\\n                    \\\"expression_or_value\\\": [0, 0]\\n                },\\n                \\\"VAR_OBJ_SUN_ZEM7IC6E2_mass\\\": {\\n                    \\\"id\\\": \\\"VAR_OBJ_SUN_ZEM7IC6E2_mass\\\",\\n                    \\\"nickname\\\": \\\"m\\\",\\n                    \\\"type\\\": \\\"immediate\\\",\\n                    \\\"expression_or_value\\\": 1000\\n                },\\n                \\\"VAR_OBJ_SUN_ZEM7IC6E2_pos\\\": {\\n                    \\\"id\\\": \\\"VAR_OBJ_SUN_ZEM7IC6E2_pos\\\",\\n                    \\\"nickname\\\": \\\"pos\\\",\\n                    \\\"type\\\": \\\"immediate\\\",\\n                    \\\"expression_or_value\\\": [0, 0]\\n                },\\n                \\\"VAR_OBJ_SUN_ZEM7IC6E2_velocity\\\": {\\n                    \\\"id\\\": \\\"VAR_OBJ_SUN_ZEM7IC6E2_velocity\\\",\\n                    \\\"nickname\\\": \\\"velocity\\\",\\n                    \\\"type\\\": \\\"immediate\\\",\\n                    \\\"expression_or_value\\\": [0, 0]\\n                },\\n                \\\"VAR_OBJ_EARTH_ZEM7IC6E3_mass\\\": {\\n                    \\\"id\\\": \\\"VAR_OBJ_EARTH_ZEM7IC6E3_mass\\\",\\n                    \\\"nickname\\\": \\\"m\\\",\\n                    \\\"type\\\": \\\"immediate\\\",\\n                    \\\"expression_or_value\\\": 1\\n                },\\n                \\\"VAR_OBJ_EARTH_ZEM7IC6E3_pos\\\": {\\n                    \\\"id\\\": \\\"VAR_OBJ_EARTH_ZEM7IC6E3_pos\\\",\\n                    \\\"nickname\\\": \\\"pos\\\",\\n                    \\\"type\\\": \\\"immediate\\\",\\n                    \\\"expression_or_value\\\": [10, 0]\\n                },\\n                \\\"VAR_OBJ_EARTH_ZEM7IC6E3_velocity\\\": {\\n                    \\\"id\\\": \\\"VAR_OBJ_EARTH_ZEM7IC6E3_velocity\\\",\\n                    \\\"nickname\\\": \\\"velocity\\\",\\n                    \\\"type\\\": \\\"immediate\\\",\\n                    \\\"expression_or_value\\\": [0, 31.62]\\n                },\\n                \\\"VAR_G_ZEM7IC6E4\\\": {\\n                    \\\"id\\\": \\\"VAR_G_ZEM7IC6E4\\\",\\n                    \\\"nickname\\\": \\\"G\\\",\\n                    \\\"type\\\": \\\"immediate\\\",\\n                    \\\"expression_or_value\\\": 10\\n                }\\n            },\\n            \\\"ffs\\\": {\\n                \\\"FFI_GRAV_ZEM7IC6E5\\\": {\\n                    \\\"id\\\": \\\"FFI_GRAV_ZEM7IC6E5\\\",\\n                    \\\"type\\\": \\\"FFI\\\",\\n                    \\\"nickname\\\": \\\"万有引力\\\",\\n                    \\\"expression\\\": \\\"- VAR_G_ZEM7IC6E4 * mass * VAR_OBJ_SUN_ZEM7IC6E2_mass / (norm(pos - VAR_OBJ_SUN_ZEM7IC6E2_pos) ^ 2) * ((pos - VAR_OBJ_SUN_ZEM7IC6E2_pos) / norm(pos - VAR_OBJ_SUN_ZEM7IC6E2_pos))\\\",\\n                    \\\"condition\\\": \\\"self == false and mass != Infinity\\\",\\n                    \\\"template\\\": {}\\n                }\\n            },\\n            \\\"used_ids\\\": [\\n                \\\"OBJ_ZEM7IC6E1\\\",\\n                \\\"OBJ_SUN_ZEM7IC6E2\\\",\\n                \\\"OBJ_EARTH_ZEM7IC6E3\\\",\\n                \\\"VAR_OBJ_ZEM7IC6E1_mass\\\",\\n                \\\"VAR_OBJ_ZEM7IC6E1_pos\\\",\\n                \\\"VAR_OBJ_ZEM7IC6E1_velocity\\\",\\n                \\\"VAR_OBJ_SUN_ZEM7IC6E2_mass\\\",\\n                \\\"VAR_OBJ_SUN_ZEM7IC6E2_pos\\\",\\n                \\\"VAR_OBJ_SUN_ZEM7IC6E2_velocity\\\",\\n                \\\"VAR_OBJ_EARTH_ZEM7IC6E3_mass\\\",\\n                \\\"VAR_OBJ_EARTH_ZEM7IC6E3_pos\\\",\\n                \\\"VAR_OBJ_EARTH_ZEM7IC6E3_velocity\\\",\\n                \\\"VAR_G_ZEM7IC6E4\\\",\\n                \\\"FFI_GRAV_ZEM7IC6E5\\\"\\n            ],\\n            \\\"anchor\\\": \\\"OBJ_ZEM7IC6E1\\\"\\n        },\\n        \\\"varmon\\\": {\\n            \\\"VAR_OBJ_EARTH_ZEM7IC6E3_pos_vec\\\": {\\n                \\\"settings\\\": {\\n                    \\\"id\\\": \\\"VAR_OBJ_EARTH_ZEM7IC6E3_pos_vec\\\",\\n                    \\\"title\\\": \\\"地球轨迹\\\",\\n                    \\\"annoX\\\": \\\"X坐标 / m\\\",\\n                    \\\"annoY\\\": \\\"Y坐标 / m\\\",\\n                    \\\"exprX\\\": \\\"VAR_OBJ_EARTH_ZEM7IC6E3_pos[1]\\\",\\n                    \\\"ySeries\\\": [\\n                        {\\n                            \\\"name\\\": \\\"Y\\\",\\n                            \\\"expr\\\": \\\"VAR_OBJ_EARTH_ZEM7IC6E3_pos[2]\\\",\\n                            \\\"color\\\": \\\"#009dff\\\"\\n                        }\\n                    ],\\n                    \\\"display\\\": {\\n                        \\\"pos\\\": [800, 100],\\n                        \\\"size\\\": [500, 400],\\n                        \\\"disp_type\\\": \\\"plotly/scatter\\\",\\n                        \\\"axis_match\\\": true\\n                    },\\n                    \\\"datatype\\\": \\\"REAL\\\"\\n                }\\n            }\\n        }\\n    },\\n    \\\"summary\\\": \\\"## 场景构建总结\\\\n\\\\n### 用户需求理解\\\\n你希望创建一个'地球绕太阳'的物理仿真场景，展示地球在太阳引力作用下的轨道运动。\\\\n\\\\n### 设计思路\\\\n1. **世界锚点**：设为无穷大质量（🥒Infinity）作为参考系，位于原点。\\\\n2. **太阳**：质量设为 1000（足够大以产生明显引力），位于原点，初速度为零。\\\\n3. **地球**：质量设为 1，初始位置 (10, 0)（与太阳距离 10 米），初速度沿 Y 轴方向设为 √(G·M/r) ≈ 31.62，以得到近似圆形轨道。\\\\n4. **引力常数**：设置变量 G = 10，简化计算。\\\\n5. **万有引力力场**：绑定在太阳上，表达式计算太阳对任何满足条件的物体的引力。条件 `self == false and mass != Infinity` 排除太阳自身和锚点不受力。\\\\n6. **轨迹监视器**：添加变量监视器实时绘制地球的 X‑Y 轨迹，便于观察运动轨道。\\\\n\\\\n### 物理世界修改\\\\n- **保留并修改了世界锚点**：质量改为 \\\\\\\"🥒Infinity\\\\\\\"。\\\\n- **新增太阳对象**（OBJ_SUN_ZEM7IC6E2）：质量 1000，位置 (0,0)。\\\\n- **新增地球对象**（OBJ_EARTH_ZEM7IC6E3）：质量 1，初始位置 (10,0)，初速度 (0,31.62)。\\\\n- **新增相关即时变量**：每个对象的质量、位置、速度变量以及引力常数 G。\\\\n- **新增万有引力力场**（FFI_GRAV_ZEM7IC6E5）：作用于除太阳和锚点以外的所有有质量对象。\\\\n- **新增轨迹监视器**：显示地球运动轨迹。\\\\n\\\\n这样就得到了一个地球在太阳引力作用下做圆形（或近似圆形）运动的仿真场景。\\\"}\",\n                \"refusal\": null,\n                \"reasoning\": \"We need to create a \\\"地球绕太阳\\\" scene: Earth orbiting Sun under gravity.\\n\\nCurrent world: only an anchor with null mass? Actually mass is null. We need to correct anchor mass to infinity maybe. But the anchor's mass currently null; we can set to \\\"🥒Infinity\\\". Need to add Sun and Earth objects, variables for their mass etc, add gravitational force field.\\n\\nWe must output new_world and summary. Must modify world accordingly.\\n\\nLet's design: anchor with infinite mass, nickname \\\"世界设置\\\", color maybe red, size 1.\\n\\nAdd Sun: OBJ_SUN, mass large (e.g., 1000), position [0,0], velocity [0,0], style color orange maybe \\\"#ff6b35\\\", size 8.\\n\\nAdd Earth: OBJ_EARTH, mass 1, position [10,0] (distance 10 m?), velocity [0, sqrt(G*M/r)] with G variable.\\n\\nWe need variable for G, say VAR_G, immediate value 10 (like example). Also need variables for each object's mass, pos, velocity.\\n\\nForce field: gravitational force acting on Earth (and any other massive objects) due to Sun.\\n\\nWe can attach force field to Sun (master) but expression uses other object's mass etc. Condition: self == false and mass != Infinity (to exclude anchor and Sun? Actually we want force on Earth only (and any other objects except the source). If we attach to Sun, then expression will compute force on each object due to Sun; the condition self==false ensures Sun doesn't act on itself; mass != Infinity excludes anchor.\\n\\nThus FFI_GRAV attached to Sun: ffs list of Sun includes FFI_GRAV.\\n\\nExpression: \\\"- VAR_G * mass * VAR_OBJ_SUN_mass / (norm(pos - VAR_OBJ_SUN_pos) ^ 2) * ((pos - VAR_OBJ_SUN_pos) / norm(pos - VAR_OBJ_SUN_pos))\\\"\\n\\nNote: variable naming: we need to refer to Sun's mass variable: VAR_OBJ_SUN_mass, Sun's position variable: VAR_OBJ_SUN_pos.\\n\\nWe'll need to add those vars.\\n\\nWe also need to add variable for Earth's mass etc, but they are automatically added as immediate vars? In example they added them manually. We'll follow.\\n\\nAlso need to update used_ids list: include anchor, Sun, Earth, VAR_G, FFI_GRAV, plus all the variable IDs for mass,pos,velocity of each object.\\n\\nLet's generate IDs: We'll need to create unique IDs. Existing used_ids: [\\\"OBJ_ZEM7IC6E1\\\"].\\n\\nWe can generate new IDs like OBJ_SUN1, OBJ_EARTH1, but better to follow pattern: OBJ_<random>. We'll just make plausible IDs: OBJ_SUN_A1B2C3, OBJ_EARTH_D4E5F6, VAR_G_G1H2I3, FFI_GRAV_J4K5L6, plus the specific variable IDs for each object's mass,pos,velocity.\\n\\nBut we could reuse naming style: For each object, we need VAR_<objectID>_mass etc.\\n\\nThus we need to decide IDs for Sun and Earth.\\n\\nLet's pick:\\n\\nSun ID: OBJ_SUN_ZEM7IC6E2 (just increment). Earth ID: OBJ_EARTH_ZEM7IC6E3.\\n\\nVariable IDs:\\n\\nVAR_OBJ_SUN_ZEM7IC6E2_mass\\nVAR_OBJ_SUN_ZEM7IC6E2_pos\\nVAR_OBJ_SUN_ZEM7IC6E2_velocity\\n\\nVAR_OBJ_EARTH_ZEM7IC6E3_mass\\nVAR_OBJ_EARTH_ZEM7IC6E3_pos\\nVAR_OBJ_EARTH_ZEM7IC6E3_velocity\\n\\nG variable ID: VAR_G_ZEM7IC6E4\\n\\nForce field ID: FFI_GRAV_ZEM7IC6E5\\n\\nNow update used_ids list accordingly: include anchor, Sun, Earth, plus all variable IDs, plus force field.\\n\\nWe'll also need to ensure anchor mass is set to \\\"🥒Infinity\\\". Currently null; we change expression_or_value to \\\"🥒Infinity\\\".\\n\\nNow construct new_world JSON.\\n\\nLet's write:\\n\\n{\\n \\\"version\\\":\\\"file-v2\\\",\\n \\\"world\\\":{\\n   \\\"phyobjs\\\":{\\n     \\\"OBJ_ZEM7IC6E1\\\": {...},\\n     \\\"OBJ_SUN_ZEM7IC6E2\\\": {...},\\n     \\\"OBJ_EARTH_ZEM7IC6E3\\\": {...}\\n   },\\n   \\\"vars\\\": {\\n     ... existing anchor vars updated,\\n     ... Sun vars,\\n     ... Earth vars,\\n     VAR_G...\\n   },\\n   \\\"ffs\\\":{\\n     \\\"FFI_GRAV_ZEM7IC6E5\\\": {...}\\n   },\\n   \\\"used_ids\\\":[...],\\n   \\\"anchor\\\":\\\"OBJ_ZEM7IC6E1\\\"\\n },\\n \\\"varmon\\\":{ ... maybe add a trajectory monitor for Earth }\\n}\\n\\nAdd varmon for Earth trajectory: similar to example.\\n\\nWe'll add VAR_OBJ_EARTH_ZEM7IC6E3_pos_vec.\\n\\nSettings: id same, title \\\"地球轨迹\\\", annoX \\\"X坐标 / m\\\", annoY \\\"Y坐标 / m\\\", exprX \\\"VAR_OBJ_EARTH_ZEM7IC6E3_pos[1]\\\", ySeries [{ name: \\\"Y\\\", expr: \\\"VAR_OBJ_EARTH_ZEM7IC6E3_pos[2]\\\", color \\\"#009dff\\\" }], display pos [800,100], size [500,400], disp_type \\\"plotly/scatter\\\", axis_match true, datatype \\\"REAL\\\".\\n\\nNow produce summary.\\n\\nLet's craft final answer JSON.\\n\\n\",\n                \"reasoning_details\": [\n                    {\n                        \"type\": \"reasoning.text\",\n                        \"text\": \"We need to create a \\\"地球绕太阳\\\" scene: Earth orbiting Sun under gravity.\\n\\nCurrent world: only an anchor with null mass? Actually mass is null. We need to correct anchor mass to infinity maybe. But the anchor's mass currently null; we can set to \\\"🥒Infinity\\\". Need to add Sun and Earth objects, variables for their mass etc, add gravitational force field.\\n\\nWe must output new_world and summary. Must modify world accordingly.\\n\\nLet's design: anchor with infinite mass, nickname \\\"世界设置\\\", color maybe red, size 1.\\n\\nAdd Sun: OBJ_SUN, mass large (e.g., 1000), position [0,0], velocity [0,0], style color orange maybe \\\"#ff6b35\\\", size 8.\\n\\nAdd Earth: OBJ_EARTH, mass 1, position [10,0] (distance 10 m?), velocity [0, sqrt(G*M/r)] with G variable.\\n\\nWe need variable for G, say VAR_G, immediate value 10 (like example). Also need variables for each object's mass, pos, velocity.\\n\\nForce field: gravitational force acting on Earth (and any other massive objects) due to Sun.\\n\\nWe can attach force field to Sun (master) but expression uses other object's mass etc. Condition: self == false and mass != Infinity (to exclude anchor and Sun? Actually we want force on Earth only (and any other objects except the source). If we attach to Sun, then expression will compute force on each object due to Sun; the condition self==false ensures Sun doesn't act on itself; mass != Infinity excludes anchor.\\n\\nThus FFI_GRAV attached to Sun: ffs list of Sun includes FFI_GRAV.\\n\\nExpression: \\\"- VAR_G * mass * VAR_OBJ_SUN_mass / (norm(pos - VAR_OBJ_SUN_pos) ^ 2) * ((pos - VAR_OBJ_SUN_pos) / norm(pos - VAR_OBJ_SUN_pos))\\\"\\n\\nNote: variable naming: we need to refer to Sun's mass variable: VAR_OBJ_SUN_mass, Sun's position variable: VAR_OBJ_SUN_pos.\\n\\nWe'll need to add those vars.\\n\\nWe also need to add variable for Earth's mass etc, but they are automatically added as immediate vars? In example they added them manually. We'll follow.\\n\\nAlso need to update used_ids list: include anchor, Sun, Earth, VAR_G, FFI_GRAV, plus all the variable IDs for mass,pos,velocity of each object.\\n\\nLet's generate IDs: We'll need to create unique IDs. Existing used_ids: [\\\"OBJ_ZEM7IC6E1\\\"].\\n\\nWe can generate new IDs like OBJ_SUN1, OBJ_EARTH1, but better to follow pattern: OBJ_<random>. We'll just make plausible IDs: OBJ_SUN_A1B2C3, OBJ_EARTH_D4E5F6, VAR_G_G1H2I3, FFI_GRAV_J4K5L6, plus the specific variable IDs for each object's mass,pos,velocity.\\n\\nBut we could reuse naming style: For each object, we need VAR_<objectID>_mass etc.\\n\\nThus we need to decide IDs for Sun and Earth.\\n\\nLet's pick:\\n\\nSun ID: OBJ_SUN_ZEM7IC6E2 (just increment). Earth ID: OBJ_EARTH_ZEM7IC6E3.\\n\\nVariable IDs:\\n\\nVAR_OBJ_SUN_ZEM7IC6E2_mass\\nVAR_OBJ_SUN_ZEM7IC6E2_pos\\nVAR_OBJ_SUN_ZEM7IC6E2_velocity\\n\\nVAR_OBJ_EARTH_ZEM7IC6E3_mass\\nVAR_OBJ_EARTH_ZEM7IC6E3_pos\\nVAR_OBJ_EARTH_ZEM7IC6E3_velocity\\n\\nG variable ID: VAR_G_ZEM7IC6E4\\n\\nForce field ID: FFI_GRAV_ZEM7IC6E5\\n\\nNow update used_ids list accordingly: include anchor, Sun, Earth, plus all variable IDs, plus force field.\\n\\nWe'll also need to ensure anchor mass is set to \\\"🥒Infinity\\\". Currently null; we change expression_or_value to \\\"🥒Infinity\\\".\\n\\nNow construct new_world JSON.\\n\\nLet's write:\\n\\n{\\n \\\"version\\\":\\\"file-v2\\\",\\n \\\"world\\\":{\\n   \\\"phyobjs\\\":{\\n     \\\"OBJ_ZEM7IC6E1\\\": {...},\\n     \\\"OBJ_SUN_ZEM7IC6E2\\\": {...},\\n     \\\"OBJ_EARTH_ZEM7IC6E3\\\": {...}\\n   },\\n   \\\"vars\\\": {\\n     ... existing anchor vars updated,\\n     ... Sun vars,\\n     ... Earth vars,\\n     VAR_G...\\n   },\\n   \\\"ffs\\\":{\\n     \\\"FFI_GRAV_ZEM7IC6E5\\\": {...}\\n   },\\n   \\\"used_ids\\\":[...],\\n   \\\"anchor\\\":\\\"OBJ_ZEM7IC6E1\\\"\\n },\\n \\\"varmon\\\":{ ... maybe add a trajectory monitor for Earth }\\n}\\n\\nAdd varmon for Earth trajectory: similar to example.\\n\\nWe'll add VAR_OBJ_EARTH_ZEM7IC6E3_pos_vec.\\n\\nSettings: id same, title \\\"地球轨迹\\\", annoX \\\"X坐标 / m\\\", annoY \\\"Y坐标 / m\\\", exprX \\\"VAR_OBJ_EARTH_ZEM7IC6E3_pos[1]\\\", ySeries [{ name: \\\"Y\\\", expr: \\\"VAR_OBJ_EARTH_ZEM7IC6E3_pos[2]\\\", color \\\"#009dff\\\" }], display pos [800,100], size [500,400], disp_type \\\"plotly/scatter\\\", axis_match true, datatype \\\"REAL\\\".\\n\\nNow produce summary.\\n\\nLet's craft final answer JSON.\\n\\n\",\n                        \"format\": \"unknown\",\n                        \"index\": 0\n                    }\n                ]\n            }\n        }\n    ],\n    \"usage\": {\n        \"prompt_tokens\": 12450,\n        \"completion_tokens\": 3726,\n        \"total_tokens\": 16176,\n        \"cost\": 0,\n        \"is_byok\": false,\n        \"prompt_tokens_details\": {\n            \"cached_tokens\": 0,\n            \"cache_write_tokens\": 0,\n            \"audio_tokens\": 0,\n            \"video_tokens\": 0\n        },\n        \"cost_details\": {\n            \"upstream_inference_cost\": 0,\n            \"upstream_inference_prompt_cost\": 0,\n            \"upstream_inference_completions_cost\": 0\n        },\n        \"completion_tokens_details\": {\n            \"reasoning_tokens\": 1049,\n            \"image_tokens\": 0,\n            \"audio_tokens\": 0\n        }\n    }\n}"
+      },
+      "order": 20
+    }
+  ],
+  "routes": [
+    {
+      "id": "route-health",
+      "name": "Health",
+      "path": "/health",
+      "methods": [
+        "GET"
+      ],
+      "logic_id": "logic-welcome",
+      "folder_id": "folder-7c8fd31037",
+      "enabled": true,
+      "scope": "persistent",
+      "order": 0
+    },
+    {
+      "id": "route-echo",
+      "name": "Echo",
+      "path": "/echo/{name}",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "logic_id": "logic-echo",
+      "folder_id": "folder-7c8fd31037",
+      "enabled": true,
+      "scope": "persistent",
+      "order": 10
+    },
+    {
+      "id": "route-6a75f82e4e",
+      "name": "fake llm response for PS2",
+      "path": "/completions",
+      "methods": [
+        "GET",
+        "POST",
+        "OPTIONS"
+      ],
+      "logic_id": "logic-feb869e5f5",
+      "folder_id": "folder-090de36018",
+      "enabled": false,
+      "scope": "persistent",
+      "order": 20
+    }
+  ],
+  "folders": [
+    {
+      "id": "folder-all",
+      "name": "All Endpoints",
+      "icon": "🌐",
+      "path_prefix": "",
+      "theme_color": "#ffffff",
+      "order": 0,
+      "locked": true
+    },
+    {
+      "id": "folder-7c8fd31037",
+      "name": "System",
+      "icon": "⚙",
+      "path_prefix": "",
+      "theme_color": "#ffea00",
+      "locked": false,
+      "order": 10
+    },
+    {
+      "id": "folder-090de36018",
+      "name": "PhySim2",
+      "icon": "📂",
+      "path_prefix": "/ps2",
+      "theme_color": "#496a58",
+      "locked": false,
+      "order": 20
+    },
+    {
+      "id": "folder-c858b61d3d",
+      "name": "temp",
+      "icon": "T",
+      "path_prefix": "/tmp",
+      "theme_color": "#df6bff",
+      "locked": false,
+      "order": 30
+    }
+  ]
+}
